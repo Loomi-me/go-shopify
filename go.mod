@@ -1,4 +1,4 @@
-module github.com/loomi-me/go-shopify/v3
+module github.com/loomi-me/go-shopify
 
 go 1.16
 
