@@ -10,6 +10,7 @@ import (
 )
 
 const ordersBasePath = "orders"
+const abandonedCartsBasePath = "checkouts"
 const ordersResourceName = "orders"
 
 // OrderService is an interface for interfacing with the orders endpoints of
@@ -18,6 +19,7 @@ const ordersResourceName = "orders"
 type OrderService interface {
 	List(interface{}) ([]Order, error)
 	ListWithPagination(interface{}) ([]Order, *Pagination, error)
+	ListAbandonedCheckoutsWithPagination(interface{}) ([]AbandonedCart, *Pagination, error)
 	Count(interface{}) (int, error)
 	Get(int64, interface{}) (*Order, error)
 	Create(Order) (*Order, error)
@@ -38,6 +40,8 @@ type OrderService interface {
 type OrderServiceOp struct {
 	client *Client
 }
+
+
 
 // A struct for all available order count options
 type OrderCountOptions struct {
@@ -383,6 +387,27 @@ func (s *OrderServiceOp) List(options interface{}) ([]Order, error) {
 		return nil, err
 	}
 	return orders, nil
+}
+
+func (s *OrderServiceOp) ListAbandonedCheckoutsWithPagination(options interface{}) ([]AbandonedCart, *Pagination, error) {
+	path := fmt.Sprintf("%s.json", abandonedCartsBasePath)
+	resource := new(AbandonedCartResource)
+	headers := http.Header{}
+
+	headers, err := s.client.createAndDoGetHeaders("GET", path, nil, options, resource)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	// Extract pagination info from header
+	linkHeader := headers.Get("Link")
+
+	pagination, err := extractPagination(linkHeader)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	return resource.Checkouts, pagination, nil
 }
 
 func (s *OrderServiceOp) ListWithPagination(options interface{}) ([]Order, *Pagination, error) {
