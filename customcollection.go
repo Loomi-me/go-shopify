@@ -104,7 +104,7 @@ func (s *CustomCollectionServiceOp) Delete(collectionID int64) error {
 }
 
 func (s *CustomCollectionServiceOp) ListWithPagination(options interface{}) ([]CustomCollection, *Pagination, error) {
-	path := fmt.Sprintf("%s.json", smartCollectionsBasePath)
+	path := fmt.Sprintf("%s.json", customCollectionsBasePath)
 	resource := new(CustomCollectionsResource)
 	headers := http.Header{}
 

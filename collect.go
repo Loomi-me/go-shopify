@@ -46,7 +46,7 @@ type CollectsResource struct {
 }
 
 func (s *CollectServiceOp) ListWithPagination(options interface{}) ([]Collect, *Pagination, error) {
-	path := fmt.Sprintf("%s.json", smartCollectionsBasePath)
+	path := fmt.Sprintf("%s.json", collectsBasePath)
 	resource := new(CollectsResource)
 	headers := http.Header{}
 
