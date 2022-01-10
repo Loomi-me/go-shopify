@@ -2,6 +2,7 @@ package goshopify
 
 import (
 	"fmt"
+	"net/http"
 	"time"
 )
 
@@ -12,6 +13,7 @@ const collectsBasePath = "collects"
 // See: https://help.shopify.com/api/reference/products/collect
 type CollectService interface {
 	List(interface{}) ([]Collect, error)
+	ListWithPagination(options interface{}) ([]Collect, *Pagination, error)
 	Count(interface{}) (int, error)
 }
 
@@ -43,6 +45,26 @@ type CollectsResource struct {
 	Collects []Collect `json:"collects"`
 }
 
+func (s *CollectServiceOp) ListWithPagination(options interface{}) ([]Collect, *Pagination, error) {
+	path := fmt.Sprintf("%s.json", smartCollectionsBasePath)
+	resource := new(CollectsResource)
+	headers := http.Header{}
+
+	headers, err := s.client.createAndDoGetHeaders("GET", path, nil, options, resource)
+	if err != nil {
+	return nil, nil, err
+	}
+
+	// Extract pagination info from header
+	linkHeader := headers.Get("Link")
+
+	pagination, err := extractPagination(linkHeader)
+	if err != nil {
+	return nil, nil, err
+	}
+	return resource.Collects, pagination, nil
+
+}
 // List collects
 func (s *CollectServiceOp) List(options interface{}) ([]Collect, error) {
 	path := fmt.Sprintf("%s.json", collectsBasePath)

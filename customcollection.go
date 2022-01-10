@@ -2,6 +2,7 @@ package goshopify
 
 import (
 	"fmt"
+	"net/http"
 	"time"
 )
 
@@ -13,6 +14,7 @@ const customCollectionsResourceName = "collections"
 // See https://help.shopify.com/api/reference/customcollection
 type CustomCollectionService interface {
 	List(interface{}) ([]CustomCollection, error)
+	ListWithPagination(options interface{}) ([]CustomCollection, *Pagination, error)
 	Count(interface{}) (int, error)
 	Get(int64, interface{}) (*CustomCollection, error)
 	Create(CustomCollection) (*CustomCollection, error)
@@ -100,6 +102,27 @@ func (s *CustomCollectionServiceOp) Update(collection CustomCollection) (*Custom
 func (s *CustomCollectionServiceOp) Delete(collectionID int64) error {
 	return s.client.Delete(fmt.Sprintf("%s/%d.json", customCollectionsBasePath, collectionID))
 }
+
+func (s *CustomCollectionServiceOp) ListWithPagination(options interface{}) ([]CustomCollection, *Pagination, error) {
+	path := fmt.Sprintf("%s.json", smartCollectionsBasePath)
+	resource := new(CustomCollectionsResource)
+	headers := http.Header{}
+
+	headers, err := s.client.createAndDoGetHeaders("GET", path, nil, options, resource)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	// Extract pagination info from header
+	linkHeader := headers.Get("Link")
+
+	pagination, err := extractPagination(linkHeader)
+	if err != nil {
+		return nil, nil, err
+	}
+	return resource.Collections, pagination, nil
+}
+
 
 // List metafields for a custom collection
 func (s *CustomCollectionServiceOp) ListMetafields(customCollectionID int64, options interface{}) ([]Metafield, error) {
