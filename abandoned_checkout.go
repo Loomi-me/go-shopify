@@ -65,25 +65,25 @@ type CheckoutLineItems struct {
 	PresentmentTitle        string                `json:"presentment_title"`
 	PresentmentVariantTitle string                `json:"presentment_variant_title"`
 	ProductID               int                   `json:"product_id"`
-	Properties              []NoteAttribute       `json:"properties"`
-	Quantity                int                   `json:"quantity"`
-	RequiresShipping        bool                  `json:"requires_shipping"`
-	Sku                     string                `json:"sku"`
-	TaxLines                []TaxLine             `json:"tax_lines"`
-	Taxable                 bool                  `json:"taxable"`
-	Title                   string                `json:"title"`
-	VariantID               int                   `json:"variant_id"`
-	VariantTitle            string                `json:"variant_title"`
-	VariantPrice            *decimal.Decimal      `json:"variant_price"`
-	Vendor                  string                `json:"vendor"`
-	UserID                  int64                 `json:"user_id"`
-	LinePrice               *decimal.Decimal      `json:"line_price"`
-	Price                   string                `json:"price"`
+	//Properties              []NoteAttribute       `json:"properties"`
+	Quantity         int              `json:"quantity"`
+	RequiresShipping bool             `json:"requires_shipping"`
+	Sku              string           `json:"sku"`
+	TaxLines         []TaxLine        `json:"tax_lines"`
+	Taxable          bool             `json:"taxable"`
+	Title            string           `json:"title"`
+	VariantID        int              `json:"variant_id"`
+	VariantTitle     string           `json:"variant_title"`
+	VariantPrice     *decimal.Decimal `json:"variant_price"`
+	Vendor           string           `json:"vendor"`
+	UserID           int64            `json:"user_id"`
+	LinePrice        *decimal.Decimal `json:"line_price"`
+	Price            string           `json:"price"`
 }
 
 type CheckoutShippingLines struct {
 	Title            string            `json:"title"`
-	Price            *decimal.Decimal            `json:"price"`
+	Price            *decimal.Decimal  `json:"price"`
 	Code             string            `json:"code"`
 	Source           string            `json:"source"`
 	AppliedDiscounts []AppliedDiscount `json:"applied_discounts"`
