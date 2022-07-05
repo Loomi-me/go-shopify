@@ -42,6 +42,7 @@ type ProductServiceOp struct {
 type Product struct {
 	ID                             int64           `json:"id,omitempty"`
 	Title                          string          `json:"title,omitempty"`
+	Status                         string          `json:"status,omitempty"`
 	BodyHTML                       string          `json:"body_html,omitempty"`
 	Vendor                         string          `json:"vendor,omitempty"`
 	ProductType                    string          `json:"product_type,omitempty"`
