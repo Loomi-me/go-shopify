@@ -113,6 +113,7 @@ type Client struct {
 	DiscountCode               DiscountCodeService
 	PriceRule                  PriceRuleService
 	InventoryItem              InventoryItemService
+	InventoryLevel             InventoryLevelService
 	ShippingZone               ShippingZoneService
 	ProductListing             ProductListingService
 }
@@ -287,6 +288,7 @@ func NewClient(app App, shopName, token string, opts ...Option) *Client {
 	c.DiscountCode = &DiscountCodeServiceOp{client: c}
 	c.PriceRule = &PriceRuleServiceOp{client: c}
 	c.InventoryItem = &InventoryItemServiceOp{client: c}
+	c.InventoryLevel = &InventoryLevelServiceOp{client: c}
 	c.ShippingZone = &ShippingZoneServiceOp{client: c}
 	c.ProductListing = &ProductListingServiceOp{client: c}
 
@@ -536,6 +538,11 @@ func CheckResponseError(r *http.Response) error {
 	}
 
 	return wrapSpecificError(r, responseError)
+}
+
+type InventoryLevelListOptions struct {
+	IDs   []int64 `url:"inventory_item_ids,comma"`
+	Limit int     `url:"limit,omitempty"`
 }
 
 // General list options that can be used for most collections of entities.
