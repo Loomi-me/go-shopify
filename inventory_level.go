@@ -2,6 +2,7 @@ package goshopify
 
 import (
 	"fmt"
+	"net/http"
 	"time"
 )
 
@@ -9,6 +10,7 @@ const inventoryLevelBasePath = "inventory_levels"
 
 type InventoryLevelService interface {
 	List(interface{}) ([]InventoryLevel, error)
+	ListWithPagination(interface{}) ([]InventoryLevel, *Pagination, error)
 }
 
 type InventoryLevelServiceOp struct {
@@ -27,6 +29,22 @@ type InventoryLevelsResource struct {
 	InventoryItems []InventoryLevel `json:"inventory_levels"`
 }
 
+func (s *InventoryLevelServiceOp) ListWithPagination(options interface{}) ([]InventoryLevel, *Pagination, error) {
+	path := fmt.Sprintf("%s.json", inventoryLevelBasePath)
+	resource := new(InventoryLevelsResource)
+	headers := http.Header{}
+
+	headers, err := s.client.createAndDoGetHeaders("GET", path, nil, options, resource)
+	if err != nil {
+		return nil, nil, err
+	}
+	linkHeader := headers.Get("Link")
+	pagination, err := extractPagination(linkHeader)
+	if err != nil {
+		return nil, nil, err
+	}
+	return resource.InventoryItems, pagination, nil
+}
 func (s *InventoryLevelServiceOp) List(options interface{}) ([]InventoryLevel, error) {
 	path := fmt.Sprintf("%s.json", inventoryLevelBasePath)
 	resource := new(InventoryLevelsResource)
