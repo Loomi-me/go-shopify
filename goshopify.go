@@ -541,7 +541,7 @@ func CheckResponseError(r *http.Response) error {
 }
 
 type InventoryLevelListOptions struct {
-	IDs      []int64 `url:"inventory_item_ids,comma"`
+	IDs      []int64 `url:"inventory_item_ids,comma,omitempty"`
 	Limit    int     `url:"limit,omitempty"`
 	PageInfo string  `url:"page_info,omitempty"`
 }
