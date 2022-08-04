@@ -541,8 +541,9 @@ func CheckResponseError(r *http.Response) error {
 }
 
 type InventoryLevelListOptions struct {
-	IDs   []int64 `url:"inventory_item_ids,comma"`
-	Limit int     `url:"limit,omitempty"`
+	IDs      []int64 `url:"inventory_item_ids,comma"`
+	Limit    int     `url:"limit,omitempty"`
+	PageInfo string  `url:"page_info,omitempty"`
 }
 
 // General list options that can be used for most collections of entities.
