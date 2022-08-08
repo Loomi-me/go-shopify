@@ -408,8 +408,8 @@ func (c *Client) logResponse(res *http.Response) {
 		return
 	}
 	c.log.Debugf("RECV %d: %s", res.StatusCode, res.Status)
+	body := c.logBody(&res.Body, "RESP: %s")
 	if res.StatusCode > 399 {
-		body := c.logBody(&res.Body, "RESP: %s")
 		fmt.Printf("\nRECV %d: %s \n\n %s \n", res.StatusCode, res.Status, body)
 	}
 }
