@@ -408,18 +408,23 @@ func (c *Client) logResponse(res *http.Response) {
 		return
 	}
 	c.log.Debugf("RECV %d: %s", res.StatusCode, res.Status)
-	c.logBody(&res.Body, "RESP: %s")
+	if res.StatusCode > 399 {
+		body := c.logBody(&res.Body, "RESP: %s")
+		fmt.Printf("\nRECV %d: %s \n\n %s \n", res.StatusCode, res.Status, body)
+	}
 }
 
-func (c *Client) logBody(body *io.ReadCloser, format string) {
+func (c *Client) logBody(body *io.ReadCloser, format string) string {
 	if body == nil {
-		return
+		return ""
 	}
 	b, _ := ioutil.ReadAll(*body)
 	if len(b) > 0 {
 		c.log.Debugf(format, string(b))
 	}
-	*body = ioutil.NopCloser(bytes.NewBuffer(b))
+	buffer := bytes.NewBuffer(b)
+	*body = ioutil.NopCloser(buffer)
+	return string(b)
 }
 
 func wrapSpecificError(r *http.Response, err ResponseError) error {
