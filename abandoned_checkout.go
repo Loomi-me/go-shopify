@@ -57,14 +57,14 @@ type AbandonedCart struct {
 }
 
 type CheckoutLineItems struct {
-	AppliedDiscount         *AppliedDiscount      `json:"applied_discount,omitempty"`
-	DiscountAllocations     []DiscountAllocations `json:"discount_allocations"`
-	Key                     string                `json:"key"`
-	GiftCard                bool                  `json:"gift_card"`
-	Grams                   int                   `json:"grams"`
-	PresentmentTitle        string                `json:"presentment_title"`
-	PresentmentVariantTitle string                `json:"presentment_variant_title"`
-	ProductID               int                   `json:"product_id"`
+	AppliedDiscount     *AppliedDiscount      `json:"applied_discount,omitempty"`
+	DiscountAllocations []DiscountAllocations `json:"discount_allocations"`
+	//Key                     string                `json:"key"`
+	GiftCard                bool   `json:"gift_card"`
+	Grams                   int    `json:"grams"`
+	PresentmentTitle        string `json:"presentment_title"`
+	PresentmentVariantTitle string `json:"presentment_variant_title"`
+	ProductID               int    `json:"product_id"`
 	//Properties              []NoteAttribute       `json:"properties"`
 	Quantity         int              `json:"quantity"`
 	RequiresShipping bool             `json:"requires_shipping"`
