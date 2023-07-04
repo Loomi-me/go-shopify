@@ -78,6 +78,7 @@ type CustomerTagsResource struct {
 
 // Represents the options available when searching for a customer
 type CustomerSearchOptions struct {
+	ListOptions
 	Page   int    `url:"page,omitempty"`
 	Limit  int    `url:"limit,omitempty"`
 	Fields string `url:"fields,omitempty"`
