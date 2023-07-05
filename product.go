@@ -78,6 +78,7 @@ type ProductListOptions struct {
 	ProductType           string    `url:"product_type,omitempty"`
 	Vendor                string    `url:"vendor,omitempty"`
 	Handle                string    `url:"handle,omitempty"`
+	Fields                string    `url:"fields,omitempty"`
 	PublishedAtMin        time.Time `url:"published_at_min,omitempty"`
 	PublishedAtMax        time.Time `url:"published_at_max,omitempty"`
 	PublishedStatus       string    `url:"published_status,omitempty"`
