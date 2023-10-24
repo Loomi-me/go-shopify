@@ -41,8 +41,6 @@ type OrderServiceOp struct {
 	client *Client
 }
 
-
-
 // A struct for all available order count options
 type OrderCountOptions struct {
 	Page              int       `url:"page,omitempty"`
@@ -87,6 +85,7 @@ type Order struct {
 	ID                    int64            `json:"id,omitempty"`
 	Name                  string           `json:"name,omitempty"`
 	Email                 string           `json:"email,omitempty"`
+	IsPostPurchase        bool             `json:"isPostPurchase,omitempty"`
 	CreatedAt             *time.Time       `json:"created_at,omitempty"`
 	UpdatedAt             *time.Time       `json:"updated_at,omitempty"`
 	CancelledAt           *time.Time       `json:"cancelled_at,omitempty"`
