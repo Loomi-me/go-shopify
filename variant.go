@@ -48,6 +48,7 @@ type Variant struct {
 	Option1              string           `json:"option1,omitempty"`
 	Option2              string           `json:"option2,omitempty"`
 	Option3              string           `json:"option3,omitempty"`
+	HexColor             string           `json:"vslyHexColor,omitempty"`
 	CreatedAt            *time.Time       `json:"created_at,omitempty"`
 	UpdatedAt            *time.Time       `json:"updated_at,omitempty"`
 	Taxable              bool             `json:"taxable,omitempty"`
