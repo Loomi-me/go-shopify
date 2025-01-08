@@ -48,13 +48,13 @@ type Variant struct {
 	Option1              string           `json:"option1,omitempty"`
 	Option2              string           `json:"option2,omitempty"`
 	Option3              string           `json:"option3,omitempty"`
-	HexColor             string           `json:"vslyHexColor,omitempty"`
 	CreatedAt            *time.Time       `json:"created_at,omitempty"`
 	UpdatedAt            *time.Time       `json:"updated_at,omitempty"`
 	Taxable              bool             `json:"taxable,omitempty"`
 	TaxCode              string           `json:"tax_code,omitempty"`
 	Barcode              string           `json:"barcode,omitempty"`
 	ImageID              int64            `json:"image_id,omitempty"`
+	FeaturedImage        *Image           `json:"image,omitempty"`
 	InventoryQuantity    int              `json:"inventory_quantity,omitempty"`
 	Weight               *decimal.Decimal `json:"weight,omitempty"`
 	WeightUnit           string           `json:"weight_unit,omitempty"`
