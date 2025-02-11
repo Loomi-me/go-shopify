@@ -92,6 +92,7 @@ type Order struct {
 	VslyUid       string `json:"vslyUid,omitempty"`
 	VslyCartToken string `json:"vslyCartToken,omitempty"`
 	VslySessionId string `json:"vslySessionId,omitempty"`
+	VslySubs      string `json:"vslySubs,omitempty"`
 
 	Email                 string           `json:"email,omitempty"`
 	VisuallyUserId        string           `json:"visuallyUserId,omitempty"`
