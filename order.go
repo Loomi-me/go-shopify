@@ -86,6 +86,7 @@ type Order struct {
 	Name                  string           `json:"name,omitempty"`
 	Alias                 string           `json:"alias,omitempty"`
 	Country               string           `json:"country,omitempty"`
+	CountryCode           string           `json:"countryCode,omitempty"`
 	Email                 string           `json:"email,omitempty"`
 	VisuallyUserId        string           `json:"visuallyUserId,omitempty"`
 	CreatedAt             *time.Time       `json:"created_at,omitempty"`
