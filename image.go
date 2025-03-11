@@ -33,6 +33,7 @@ type Image struct {
 	Width      int        `json:"width,omitempty"`
 	Height     int        `json:"height,omitempty"`
 	Src        string     `json:"src,omitempty"`
+	AltText    string     `json:"altText,omitempty"`
 	Attachment string     `json:"attachment,omitempty"`
 	Filename   string     `json:"filename,omitempty"`
 	VariantIds []int64    `json:"variant_ids,omitempty"`
