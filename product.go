@@ -62,8 +62,7 @@ type Product struct {
 	MetafieldsGlobalDescriptionTag string          `json:"metafields_global_description_tag,omitempty"`
 	Metafields                     []Metafield     `json:"metafields,omitempty"`
 	AdminGraphqlAPIID              string          `json:"admin_graphql_api_id,omitempty"`
-	RecentOrders                   int             `json:"-"`
-	IsRecentlyPublished            bool            `json:"-"`
+	IsExcluded                     bool            `json:"-"`
 }
 
 // The options provided by Shopify
