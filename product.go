@@ -63,6 +63,7 @@ type Product struct {
 	Metafields                     []Metafield     `json:"metafields,omitempty"`
 	AdminGraphqlAPIID              string          `json:"admin_graphql_api_id,omitempty"`
 	IsExcluded                     bool            `json:"-"`
+	RecentOrders                   int             `json:"-"`
 }
 
 // The options provided by Shopify
