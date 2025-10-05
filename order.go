@@ -211,6 +211,10 @@ type LineItem struct {
 	DestinationLocation        *Address              `json:"destination_location,omitempty"`
 	AppliedDiscount            *AppliedDiscount      `json:"applied_discount,omitempty"`
 	DiscountAllocations        []DiscountAllocations `json:"discount_allocations,omitempty"`
+
+	IsPartOfBundle   bool    `json:"is_part_of_bundle,omitempty"`
+	LineItemDiscount float32 `json:"line_item_discount,omitempty"`
+	LineItemTax      float32 `json:"line_item_tax,omitempty"`
 }
 
 type DiscountAllocations struct {
