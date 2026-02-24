@@ -45,6 +45,7 @@ type Variant struct {
 	FulfillmentService   string           `json:"fulfillment_service,omitempty"`
 	InventoryManagement  string           `json:"inventory_management,omitempty"`
 	InventoryItemId      int64            `json:"inventory_item_id,omitempty"`
+	InventoryTracking    bool             `json:"inventory_tracking,omitempty"`
 	Option1              string           `json:"option1,omitempty"`
 	Option2              string           `json:"option2,omitempty"`
 	Option3              string           `json:"option3,omitempty"`
